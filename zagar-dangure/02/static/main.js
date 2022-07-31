@@ -1,99 +1,316 @@
+sidebar = document.getElementById("sidebar")
+main = document.getElementById('main')
+sidebar_key = document.getElementById("sidebar-key")
+container_cards = document.getElementById("container-cards")
+readmore = document.getElementById("readmore")
+maindata = document.getElementById('input0')
+default_close = document.createElement('span')
+default_close.innerText = "&times;"
+default_close.classList.add("w3-button", 'w3-display-right')
+default_close.onclick = () => {
+    container_cards.removeChild(this.parentElement)
+}
+
+function _dsk(n) {
+    x = document.createElement('th')
+    x.innerText = n
+    return x
+}
+const dsk = _dsk("Data Sekolah Sekarang")
+const dfs = _dsk("Data Fisik Siswa")
+const dms = _dsk("Data Metafisika Siswa")
+
+// No class user.
+mainuser = {
+    "Nama": "Zagar",
+    'Tanggal Lahir': "28-07-2006",
+    "Alamat": null,
+    "IISN": null,
+    "Jenis Kelamin": "Laki-laki",
+    "Asal Sekolah": "SMP Negeri 7 Klaten",
+    "skip_01": dsk,
+    "Nomor Absen": 22,
+    "Kelas": "10 PPLG",
+    "Sekolah": "SMK Muhammadiyah 1 Klaten Utara",
+    "skip_02": dfs,
+    "Tinggi Badan": "169cm",
+    "Berat": "54kg",
+    "skip_03": dms,
+    "Nama Sihir": null,
+    "Level Sihir": null
+}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 async function open_sidebar() {
-    sidebar = document.getElementById("sidebar")
-    main = document.getElementById('main')
-    opener = document.getElementById("sidebar-key")
     if (screen.availWidth < 1024) {
-        1+1
+        1 + 1
     } else {
         sidebar.style.width = "25%"
         main.style.marginLeft = '25%'
         sidebar.style.display = 'block'
     }
-    opener.onclick = close_sidebar
-    return opener
+    sidebar_key.onclick = close_sidebar
+    return sidebar_key
 }
 
 async function close_sidebar() {
-    sidebar = document.getElementById("sidebar")
-    main = document.getElementById('main')
-    opener = document.getElementById("sidebar-key")
     sidebar.style.width = "0%"
     main.style.marginLeft = '0%'
     sidebar.style.display = "none"
     await sleep(500)
-    opener.onclick = open_sidebar
-    return opener
+    sidebar_key.onclick = open_sidebar
+    return sidebar_key
 }
 
-async function readProtected(value){
-    container = document.getElementById("container-cards")
-    button = document.getElementById("readmore").style.display = 'none'
-    if (value != 0){
+function _replace(obj, item0, item1) {
+    if (obj.contains(item0) == true) {
+        obj.remove(item0)
+        if (item1 != '') {
+            obj.add(item1)
+        }
+    }
+}
+
+async function readProtected(value) {
+    readmore.style.display = 'none'
+    if (value != 0) {
         throw new Error("No such ID")
     }
-    waiting = "<div class='w3-modal w3-round-large' id='modal-01' style='display: block'><div class='w3-modal-content default-background-color w3-round-large'><div class='w3-card-4 w3-padding' id='rp-waiting'><p id='w3-center'>Menunggu balasan Server Semesta 0</p></div></div></div>"
-    inputs = "<div class='w3-modal w3-round-large' id='modal-01' style='display: block'><div class='w3-modal-content default-background-color w3-round-large'><div class='w3-card-4 w3-padding' id='sudo'><div class='w3-container w3-teal'><h2>Mode Sudo</h2></div><label class='w3-text-teal'><b>Username</b></label><input type='text' class='w3-input w3-border w3-border-blue' id='input0'><label class='w3-text-teal'><b>Password</b></label><input id='input1' class='w3-input w3-border w3-border-blue' type='password'><br><button class='w3-btn w3-blue-grey' onclick='readServer(0)'>Baca</button></div></div>"
+
     x = Math.random()
     if (x <= 0.5) {
-        container.innerHTML = waiting
-        await sleep(5*1000)
-        document.getElementById("modal-01").classList.add("delete-0")
+        await wait(5 * 1000)
+        container_cards.classList.add("delete-0")
         await sleep(500)
-        container.innerHTML = ""
+        _replace(container_cards.classList, 'delete-0', '')
+        container_cards.innerHTML = ""
     }
-    container.innerHTML = inputs
+    PromptLogin("Sudo Mode")
     await sleep(1000)
 }
 
-async function readServer(value){
-    container = document.getElementById("container-cards")
-    document.getElementById("modal-01").classList.add('delete-0')
+async function readServer(value) {
+    container_cards.classList.add('delete-0')
     await sleep(500)
-    container.innerHTML = ""
-    if (value != 0){
+    container_cards.innerHTML = ""
+    if (value != 0) {
         throw new Error("No such ID")
     }
-    waiting = "<div class='w3-modal w3-round-large' id='modal-01' style='display: block'><div class='w3-modal-content default-background-color w3-round-large'><div class='w3-card-4 w3-padding' id='rp-waiting'><p id='w3-center'>Menunggu balasan Server Semesta 0</p></div></div></div>"
-    container.innerHTML = waiting
+    waiting = document.createElement('p')
+    waiting.classList.add('w3-center')
+    waiting.innerText = "Menunggu balasan Server Semesta 0"
+    _execute_modal(makeModal(waiting, true, false))
     await sleep(5 * 1000)
-    document.getElementById("modal-01").classList.add("delete-0")
+    container_cards.classList.add("delete-0")
     await sleep(1000)
-    container.innerHTML = ""
-    main = document.getElementById('main')
-    x = document.createElement("div")
-    x.id = "SM00/0"
-    x.innerHTML = '<p><span color="grey">SM00/0</span></p><table class="w3-table-all w3-small w3-striped w3-card-4 default-color"><tr><th>Kunci</th><th>Data</th></tr><tr><td>Nama</td><td>Zagar</td></tr><tr><td>Tanggal Lahir</td><td>28-06-2006</td></tr><tr><td>Alamat</td><td>NULL</td></tr><tr><td>IISN</td><td>NULL</td></tr><tr><td>Jenis Kelamin</td><td>Laki-laki</td></tr><tr><td>Asal Sekolah</td><td>SMP Negeri 7 Klaten</td></tr><tr><th>Data Sekolah Sekarang</th></tr><tr><td>Nomor Absen</td><td>22</td></tr><tr><td>Kelas</td><td>10 PPLG</td></tr><tr><td>Sekolah</td><td>SMK Muhammadiyah 1 Klaten Utara</td></tr><tr><th>Data Fisik Siswa</td></tr><tr><td>Tinggi badan</td><td>159cm</td></tr><tr><td>Berat</td><td>40kg</td></tr><tr><th>Data Metafisika Siswa</th></tr><tr><td>Nama Sihir</td><td>NULL</td></tr><tr><td>Level Sihir</td><td>NULL</td></tr></table>'
-    x.classList.add('dangerous', 'w3-padding')
-    main.appendChild(x)
+    container_cards.innerHTML = ""
+    q = document.createElement("div")
+    q.id = "SM00/0"
+    data = ObjectedTable(mainuser)
+    q.appendChild(data)
+    q.classList.add('dangerous', 'w3-padding')
+    main.appendChild(q)
 }
 
-function notFound(name){
-    container = document.getElementById("container-cards")
-    x = `<div class='w3-modal w3-round-large' id='modal-01' style='display: block'><div class='w3-modal-content default-background-color w3-round-large'><div class='w3-card w3-padding'><h2>Error 404</h2><h4>Laman ${name} tidak ditemukan</h4><br><button class='w3-button w3-border w3-border-blue w3-round-large' onclick='document.getElementById("container-cards").innerHTML = ""'>Tutup</button></div></div></div>`
-    container.innerHTML = x
+function notFound(name) {
+    root = document.createElement('div')
+    x = document.createElement('h4')
+    y = document.createElement('p')
+    x.innerText = "Error 404"
+    y.innerText = `Laman ${name} tidak ditemukan`
+    root.appendChild(x)
+    root.appendChild(y)
+    _execute_modal(makeModal(root, true, true))
+}
+
+function _todolist_destroy_parent() {
+    todolist.removeChild(this.parentElement)
+}
+
+function PromptLogin(name, idname) {
+    root = document.createElement('div')
+    root.classList.add('w3-card-4', 'w3-padding')
+    root.id = idname
+    header = document.createElement('div')
+    header.classList.add('w3-container', 'w3-teal')
+    header.innerText = name
+    label0 = document.createElement('label')
+    label0.innerText = "Username"
+    label1 = document.createElement('label')
+    label1.classList.add('w3-text-teal')
+    label1.innerText = "Password"
+    input00 = document.createElement('input')
+    input00.classList.add('w3-input', 'w3-border', 'w3-border-blue')
+    input00.id = "input0"
+    input00.type = 'text'
+    input01 = document.createElement('input')
+    input01.classList.add('w3-input', 'w3-border', 'w3-border-blue')
+    input01.id = "input0"
+    input01.type = 'password'
+    br0 = document.createElement('br')
+    button0 = document.createElement('button')
+    button0.classList.add('w3-btn', 'w3-blue-grey')
+    button0.onclick = () => {
+        readServer(0)
+    }
+    button0.innerText = "Baca"
+    root.appendChild(header)
+    root.appendChild(label0)
+    root.appendChild(input00)
+    root.appendChild(label1)
+    root.appendChild(input01)
+    root.appendChild(br0)
+    root.appendChild(button0)
+    _execute_modal(makeModal(root, true, false, 'sudo'))
 }
 
 function addTodoEntry() {
-    maindata = document.getElementById('input0')
     if (maindata.value == '') {
-        container = document.getElementById("container-cards")
-        container.innerHTML = "<div class='w3-modal w3-round-large' id='modal-01' style='display: block'><div class='w3-modal-content default-background-color w3-round-large w3-padding'><div class='w3-padding' id='rp-waiting'><span class='w3-display-right w3-button' onclick=\"document.getElementById('container-cards').innerHTML = ''\">&times;</span><p id='w3-center'>Tak dapat menambah entri: Input entri kosong</p></div></div></div>"
+        data = document.createElement("h4")
+        data.innerText = "Tak dapat memasukkan entri: Input entri kosong"
+        container_cards.appendChild(makeModal(data))
         return false
     }
     todolist = document.getElementById("todolist")
     x = document.createElement("li")
     x.classList.add("w3-display-container")
-    x.innerHTML =  `<p class='overflow-scroll' style='width:80%'>${maindata.value}</p>` + '<span class="w3-button w3-display-right" onclick="document.getElementById(\'todolist\').removeChild(this.parentElement)">&times;</span>'
+    y = document.createElement('p')
+    y.innerText = maindata.value
+    x.appendChild(y)
+    x.appendChild(default_close)
     maindata.value = ''
     todolist.appendChild(x)
 }
 
-try { 
+async function wait(ms) {
+    waiting = document.createElement('p')
+    waiting.classList.add('w3-center')
+    waiting.innerText = "Menunggu balasan Server Semesta 0"
+    _execute_modal(makeModal(waiting, true, false))
+    sleep(ms)
+}
+
+function makeModal(baseElement, setVisible = true, closable = true, customId = '') {
+    modal = document.createElement('div')
+    modal.classList.add('w3-modal', 'w3-round-large')
+    modal.id = 'modal-01'
+
+    content = document.createElement('div')
+    content.classList.add('default-background-color', 'w3-modal-content')
+    true_content = document.createElement('div')
+    true_content.classList.add('w3-card-4', 'w3-padding', 'w3-round-large')
+    close_button = document.createElement('span')
+    if (customId != '') {
+        content.id = customId
+    }
+    if (setVisible == true) {
+        modal.classList.add('init0')
+        modal.style.display = 'block'
+    }
+    modal.appendChild(content)
+    if (closable == true) {
+        close_button.classList.add('w3-button', 'w3-display-right')
+        close_button.onclick = () => {
+            container_cards.innerHTML = ''
+        }
+        content.appendChild(close_button)
+    }
+    true_content.appendChild(baseElement)
+    content.appendChild(true_content)
+    return modal
+}
+
+function _execute_modal(modal_element) {
+    container_cards.appendChild(modal_element)
+}
+
+function List(object) {
+    root = document.createElement('ul')
+    root.classList.add('w3-ul')
+    for (a in object) {
+        x = document.createElement("li")
+        x.innerText = a.toString()
+    }
+    return root
+}
+
+function _object_hasattr(self, name) {
+    try {
+        self[name]
+        return true
+    } catch {
+        return false
+    }
+}
+
+function E_iterAppend(root, ...item) {
+    for (i in item) {
+        root.appendChild(item[i])
+    }
+}
+
+function ObjectedTable(object) {
+    // This function is a reflection to HTMLBuilder/Table
+    // While this function may only recieve single key/value. It depends if it's array or not.
+    nroot = document.createElement('table')
+    root = document.createElement('tbody')
+    nroot.appendChild(root)
+    nroot.classList.add("w3-table-all", "w3-striped", 'w3-small', 'w3-card', 'w3-default-color')
+    for (a in object) {
+        x = document.createElement('tr')
+        y = document.createElement('td')
+        z = document.createElement('td')
+        y.innerText = a
+        b = object[a]
+        if (b == false || b == true) {
+            z.innerText = b.toString()
+            E_iterAppend(x, y, z)
+            root.appendChild(x)
+            continue
+        }
+        if (b == null) {
+            z.innerText = 'null'
+            E_iterAppend(x, y, z)
+            root.appendChild(x)
+            continue
+        }
+        if (a.startsWith('skip_') && _object_hasattr(b, "nodeName")) {
+            x.appendChild(b)
+            root.appendChild(x)
+            continue
+        }
+        if (typeof (b) == function () { }) continue
+        if (typeof (b) == 'number') {
+            z.innerText = b.toString()
+            E_iterAppend(x, y, z)
+            root.appendChild(x)
+            continue
+        }
+        if (typeof (b) == 'string') {
+            z.innerText = b
+            E_iterAppend(x, y, z)
+            root.appendChild(x)
+            continue
+        } if (_object_hasattr(b, "nodeName")) {
+            E_iterAppend(x, y, b)
+            root.appendChild(x)
+            continue
+        } if (typeof (b) == 'array') {
+            x.appendChild(List(b))
+            root.appendChild(x)
+            continue
+        }
+        if (typeof (b) == 'object') {
+            throw new Error("Unable to iterating the ObjectingTable.")
+        }
+    }
+    return nroot
+}
+
+try {
     for (v in document.body.children[0].children) {
         if (v.href == "/main.html") {
             continue
