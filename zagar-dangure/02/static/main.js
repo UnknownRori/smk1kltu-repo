@@ -257,6 +257,13 @@ function ObjectedTable(object) {
     // While this function may only recieve single key/value. It depends if it's array or not.
     nroot = document.createElement('table')
     root = document.createElement('tbody')
+    n0 = document.createElement('th')
+    n1 = document.createElement('th')
+    n00 = document.createElement('tr')
+    n0.innerText = 'Kunci'
+    n1.innerText = 'Data'
+    E_iterAppend(n00, n0, n1)
+    root.appendChild(n00)
     nroot.appendChild(root)
     nroot.classList.add("w3-table-all", "w3-striped", 'w3-small', 'w3-card', 'w3-default-color')
     for (a in object) {
