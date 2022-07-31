@@ -6,7 +6,11 @@ let id = 0; // siapin id
 const todoRootStyle = ['p-1', 'flex', 'place-content-between', 'border-gray-500']
 const closeUnicode = String.fromCharCode(10006);
 
-// Membuat todo
+/**
+ * Membuat Todo Node lalu di append ke root TodoList
+ * @param {string} content 
+ * @returns void
+ */
 const makeTodo = content => {
     const newNode = document.createElement('div');
     const nodeContent = document.createElement('p');
@@ -31,10 +35,19 @@ const makeTodo = content => {
     id++;
 }
 
-// Mengahapus todo
-// hapus node-nya dengan node induk
+/**
+ * Mengahapus todo,
+ * hapus node-nya dengan node induk
+ * @param {Event} event 
+ * @returns any
+ */
 const deleteTodo = event => todoListRootNode.removeChild(event.target.parentNode);
 
+/**
+ * Melakukan save user input dengan menggunakan event listener
+ * @param {event} event 
+ * @returns void
+ */
 form.onsubmit = event => {
     event.preventDefault(); // Batalkan default behavior-nya form
 
