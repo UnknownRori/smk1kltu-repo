@@ -1,5 +1,5 @@
 <?php
-// Inisialisasikan session-nya (Agar bisa menggunakan fituer session)
+// Inisialisasikan session-nya (Agar bisa menggunakan fitur session)
 session_start();
 
 // Check apakah user sudah pernah login/registrasi, kalau belom

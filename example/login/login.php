@@ -1,5 +1,5 @@
 <?php
-// Inisialisasikan session-nya (Agar bisa menggunakan fituer session)
+// Inisialisasikan session-nya (Agar bisa menggunakan fitur session)
 session_start();
 
 require './db.php';
