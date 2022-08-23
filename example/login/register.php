@@ -17,10 +17,10 @@ if (isset($_POST['register'])) {
         "INSERT INTO users (username, password) VALUES (:username, :password)"
     );
 
-    // Versi Sqlite
-    $query = $connection->prepare(
-        "INSERT INTO users (userId, username, password) VALUES (:userId, :username, :password)"
-    );
+    // Versi Sqlite, Karena si sqlite tidak support auto increment kita increment dengan manual
+    // $query = $connection->prepare(
+    //     "INSERT INTO users (userId, username, password) VALUES (:userId, :username, :password)"
+    // );
 
     // Melakukan hashing password agar lebih aman
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
