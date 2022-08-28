@@ -5,16 +5,21 @@ framework javascript(React, Vue, Svelte) kita akan membutuhkan suatu cara untuk
 melakukan komunikasi dari frontend ke backend(server) seperti kode php kita dulu
 yang melakukan komunikasi dengan database mysql.
 
-Untuk praktek kali ini kita akan belajar tentang RESTFUL API, Sebelum bahas RESTFUL API apa sih API, API
-adalah Application Programming Interface, tujuan dari API ialah berbagi data antar aplikasi yang berbeda, 
-nah RESTFUL API ini merupakan suatu desain arsitektur yang terdapat di API itu tadi, RESTFUL API ini
-sering digunakan ketika frontend(website) memerlukan suatu data yang hanya ada di backend(server).
+Untuk pertemuan kali ini kita akan belajar tentang RESTFUL API, Sebelum bahas RESTFUL API apa sih API, API
+adalah Application Programming Interface, tujuan dari API dalam konteks ini ialah berbagi data
+antar aplikasi yang berbeda, nah RESTFUL API ini merupakan suatu desain arsitektur yang terdapat
+di API itu tadi, RESTFUL API ini sering digunakan ketika frontend(website) memerlukan suatu
+data yang hanya ada di backend(server).
 
 Cara kerja RESTFUL API ini yaitu REST Client(user) akan melakukan akses pada data pada REST server,
 data-data yang diakses tadi memiliki identifier yang berbeda berbentuk URI (https://api.github.com/users/octocat/)
 setiap URI memiliki data yang berbeda dengan yang lain.
 
-Pada praktek kali ini kita akan membuat website yang menampilkan todo, todo ini berasal dari server orang lain.
+Konsep ini menggunakan serialize dan deserialize, jadi di server akan men-serialize data, lalu di client nanti
+akan deserialize data-nya, serialize merupakan suatu konversi/translasi agar dapat di baca oleh bahasa pemrograman lain
+dan deserialize ini sama dengan serialize tetapi kebalikan-nya.
+
+kita akan membuat website yang menampilkan todo, todo ini berasal dari server orang lain.
 
 URI yang akan kita pakai:
     -> https://jsonplaceholder.typicode.com/todos

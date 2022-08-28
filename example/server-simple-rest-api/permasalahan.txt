@@ -1,0 +1,118 @@
+=== Permasalahan ===
+
+Nah kemarin kita menggunakan server orang lain untuk mempelajari RESTFUL API, untuk materi kali ini
+kita akan buat RESTFUL Server dan RESTFUL Client, yang kita buat hampir sama dengan yang kemarin
+bedanya kita akan menggunakan server untuk mengirimkan data dari dan menuju ke database, agar nanti-nya
+di Client walaupun sudah di close data masih ada.
+
+Kita nanti menggunakan function header di php untuk memberi tau si request kalau response-nya merupakan
+JSON, karena kita memberitahu kalau response-nya JSON kita harus melakukan Serialization dulu, apa sih Serialization
+Serialization merupakan istilah yang bermakna translasi/pengubahan suatu data ke data lain.
+
+Serta di variabel di super global $_SERVER juga memiliki key "REQUEST_METHOD" untuk memberitahu kita HTTP Method-nya apa.
+
+Sebelum kita mulai ngoding kita harus buat tabel-nya dulu, kalau ada nama tabel yang sama di hapus agar tidak
+menggangu contoh atau kalau tidak membuat database baru saja.
+
+URI yang kita akan buat nanti-nya(Kalu disimpan di xampp/htdocs)
+    HTTP      URI                                                      Kegunaan
+ 1. GET     : localhost/nama-folder-di-htdocs/todo                     => Untuk mengambil ke-seluruhan data todo
+ 2. POST    : localhost/nama-folder-di-htdocs/todo                     => Untuk menambah todo
+ 3. DELETE  : localhost/nama-folder-di-htdocs/todo/delete.php?id=xxx   => Untuk menghapus todo
+ 4. PATCH   : localhost/nama-folder-di-htdocs/todo/complete.php?id=xxx => Untuk menandai selesai todo
+
+Kenapa kok di masukan di folder sendiri, karena secara konvensi RESTFUL API itu URI endpoint-nya harus gitu
+di nomor 1 dan 2 itu kita akan pakai file yang bernama index.php karena di php index.php yang dicari kalau kita
+di URI-nya tidak men-spesifikan file-nya, agar rapi kita pecah file tersebut menjadi
+ 1. /nama-folder-di-htdocs/todo/index.php
+ 2. /nama-folder-di-htdocs/todo/get.php
+ 3. /nama-folder-di-htdocs/todo/create.php
+ 4. /nama-folder-di-htdocs/todo/complete.php
+ 5. /nama-folder-di-htdocs/todo/db.php (File ini digunakan untuk pengurangan duplikasi kode)
+ 6. /nama-folder-di-htdocs/todo/response.php (File ini digunakan untuk pengurangan duplikasi kode)
+ 7. /nama-folder-di-htdocs/index.html (File client / pengguna RESTFUL API)
+
+Perlu di-ingat setiap URI harus memberikan HTTP Response Code yang benar
+
+HTTP Response Code yang perlu di-ingat
+200 => OK                               (Berarti Aman)
+201 => Created                          (Data berhasil di buat)
+202 => Accepted                         (Data diterima)
+203 => Non-Authoritative Information    (Si pengirim tidak memiliki akses di URI atau Kurang Authentikasi)
+400 => Bad Request                      (Data bentuk-nya salah)
+404 => Not Found                        (Halaman/Endpoint tidak ada)
+500 => Server Error                     (Server-nya error)
+
+Di php ada function http_response_code($code), function ini bisa nge-set Status Code yang kita inginkan
+PERLU DI INGAT HATI HATI MAIN DENGAN HTTP RESPONSE CODE, KALAU TIDAK TAU PAKAI YANG SUDAH DI TULIS DI ATAS
+
+Schema API yang kita buat nanti ialah
+    HTTP      URI
+ 1. GET     : localhost/nama-folder-di-htdocs/todo
+    Request : 
+    {
+
+    }
+
+    Response :
+    {
+        "code": 200,
+        "data": [
+            {
+            "id": 1,
+            "judul": "Todo post pertama ku!",
+            "selesai": 0
+            },
+            {
+            "id": 2,
+            "judul": "Todo post pertama ku!",
+            "selesai": 0
+            }
+            ...
+        ]
+    }
+ 
+ 2. POST    : localhost/nama-folder-di-htdocs/todo
+    Request : 
+    {
+        "judul": "Todo post pretama ku!",
+    }
+
+    Response :
+    {
+        "code": 201,
+        "message": "Data berhasil di tambah",
+        "todo": {
+            "id": 5,
+            "judul": "Todo post pertama ku!",
+            "selesai": 0
+        }
+    }
+
+
+ 3. DELETE  : localhost/nama-folder-di-htdocs/todo/delete.php?id=1
+    Request : 
+    {
+
+    }
+
+    Response : 
+    {
+        "code": 200,
+        "message": "Operasi penghapusan berhasil!"
+    }
+
+ 4. PATCH   : localhost/nama-folder-di-htdocs/todo/complete.php?id=2
+    Request : 
+    {
+
+    }
+
+    Response :
+    {
+        "code": 200,
+        "message": "berhasil!"
+    }
+
+Schema dan URI Endpoint yang kita buat ini sedikit mengikuti standar yang sudah 
+di tentukan oleh konvensi RESTFUL API, jadi jangan khawatir.

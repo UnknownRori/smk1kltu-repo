@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h2>App Todo List</h2>
+        <form id='form'>
+            <input type="text" name="Todo" id="input">
+            <input type="submit" value="Tambah">
+        </form>
+        <div id="app">
+            <!--  -->
+        </div>
+    </body>
+    <script>
+        // Ambil html elemen id app
+        const app = document.getElementById('app');
+
+        // siapkan html element id form dan input-nya
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+
+        // Siapkan base URI yang akan kita pakai (Kalau beda bisa diganti)
+        // Mungkin temen temen pengen localhost/nama-folder
+        const BASE_URI = '127.0.0.1:8000'
+
+        // Ini request header yang nanti kita include
+        // ini guna-nya untuk nge-set tipe data json yang kita kirim dan kita menerima json juga
+        // ini digunakan din function
+        const REQUEST_HEADER = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        };
+
+        // Function utility
+        function checkMark(boolean) {
+            return boolean ? '✔️' : '❌';
+        }
+
+        function getId(string) {
+            return string.split('-', 2)[1]
+        }
+
+        // Buat request ke REST Server
+        fetch(`http://${BASE_URI}/todo`)
+            // Karena promise kita bisa tambahkan method then
+            // then ini akan melakukan konversi terhadap response-nya
+            .then(res => res.json())
+            // Karena res.json() return promise juga kita dapat menambahkan then lagi
+            // then kali ini akan membuat html elemen todo-nya
+            .then(data => {
+                data.data.forEach(todoElement => appendTodoToApp(todoElement));
+            })
+            // catch ini ketika ada error di promise
+            .catch(err => console.error(err));
+
+        function appendTodoToApp(todoObject) {
+            const id = todoObject.id;
+            const judul = todoObject.judul;
+            const selesai = checkMark(todoObject.selesai);
+            const html = `<div id="todo-${id}">
+            <h2>${judul}</h2>
+            <span>Status : ${selesai}</span>
+            <button onclick='selesaiTodo(this)'>selesai</button>
+            <button onclick='hapusTodo(this)'>hapus</button>
+        </div>`
+
+            app.innerHTML += html;
+        }
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+            const payload = {
+                "judul": input.value
+            }
+
+            // Kita kirim request ke server dengan membawa data yang sudah kita dapatkan
+            fetch(`http://${BASE_URI}/todo`, {
+                // kita set method-nya ke post
+                method: 'POST',
+                headers: REQUEST_HEADER,
+                // karena di headers kita kirim json, kita harus serialize dulu
+                body: JSON.stringify(payload)
+            }).then(res => res.json())
+                .then(data => {
+                    appendTodoToApp(data.todo);
+                })
+                .catch(err => console.error(err));
+        }
+
+        function hapusTodo(event) {
+            const parentElement = event.parentElement;
+            // kita split id todo tadi dengan mengandalkan - yang ada di id attribute
+            // method ini return array yang berisi 2 karena kita menspesifikan 2
+            // lalu kita ambil yang terakhir
+            const id = getId(parentElement.id);
+            fetch(`http://${BASE_URI}/todo/delete.php?id=${id}`, {
+                method: 'DELETE',
+                headers: REQUEST_HEADER,
+                // kalau sukses kita langsung delete element-nya
+            }).then(res => app.removeChild(parentElement))
+                // kalau gagal kita kirimkan ke console
+                .catch(err => console.error(err));
+        }
+
+        function selesaiTodo(event) {
+            const parentElement = event.parentElement;
+            // kita split id todo tadi dengan mengandalkan - yang ada di id attribute
+            // method ini return array yang berisi 2 karena kita menspesifikan 2
+            // lalu kita ambil yang terakhir
+            const id = getId(parentElement.id);
+            fetch(`http://${BASE_URI}/todo/complete.php?id=${id}`, {
+                method: 'PATCH',
+                headers: REQUEST_HEADER,
+            })
+                .then(res => {
+                    const childNodes = parentElement.childNodes;
+                    for (let i = 0; i < childNodes.length; i++) {
+                        if (childNodes[i] instanceof HTMLSpanElement) {
+                            childNodes[i].textContent = checkMark(1);
+                            break;
+                        }
+                    }
+                })
+                // kalau gagal kita kirimkan ke console
+                .catch(err => console.error(err));
+        }
+    </script>
+
+</html>

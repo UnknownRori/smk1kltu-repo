@@ -11,13 +11,43 @@
     <body>
         <h1>Todos</h1>
         <div id='app'>
-            <h2>Title</h2>
-            <h4>Done!</h4>
+            <!--  -->
         </div>
     </body>
     <script>
+        // kita ambil html element yang ber-id app
         const app = document.getElementById('app');
-        fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => console.log(data));
+
+        // kita melakukan request ke server
+        // karena function ini mengembalikan/return promise dapat menggunakan
+        // method then dan catch untuk asynchronous programming
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            // hal pertama kita deserialize(kebalikan serialize) dulu
+            .then(res => res.json())
+            // karena method json tadi return promise juga, jadi kita dapat nambah
+            // method then yang berisi penambahan html element ke client
+            // dengan menggunakan data yang sudah di sediakan
+            .then(data => {
+                data.forEach(todo => appendTodoToApp(todo));
+            });
+
+        // Function utility
+        function checkMark(boolean) {
+            return boolean ? '✔️' : '❌';
+        }
+
+        // function ini digunakan untuk append todo ke id app element
+        function appendTodoToApp(todoObject) {
+            const id = todoObject.id;
+            const judul = todoObject.title;
+            const selesai = checkMark(todoObject.complete);
+            const html = `<div id="todo-${id}">
+            <h2>${judul}</h2>
+            <span>Status : ${selesai}</span>
+        </div>`
+
+            app.innerHTML += html;
+        }
     </script>
 
 </html>
