@@ -22,7 +22,7 @@ URI yang akan kita pakai:
 Setiap API memiliki schema, setiap API memiliki schema yang berbeda-beda jadi kita harus mempelajari-nya dulu
 sebelum membuat aplikasi kita.
 
-Ini merupakan schema RESTFUL API yang akan kita pakai, URI ini return array, 
+Ini merupakan schema RESTFUL API yang akan kita pakai, URI(Endpoint) ini return array yang berisi Javascript Object, 
 kalau tidak tau array tolong lihat pada pertemuan 1 atau 9.
 https://jsonplaceholder.typicode.com/todos
 [
