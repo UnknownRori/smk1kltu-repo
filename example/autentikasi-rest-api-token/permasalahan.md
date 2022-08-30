@@ -142,3 +142,10 @@ Response :
     ]
 }
 ```
+
+Untuk susunan file
+1. /folder-di-htdocs/api/db.php
+2. /folder-di-htdocs/api/login.php
+3. /folder-di-htdocs/api/register.php
+4. /folder-di-htdocs/api/posts.php
+5. /folder-di-htdocs/index.html
