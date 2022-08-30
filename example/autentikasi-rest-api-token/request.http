@@ -1,0 +1,38 @@
+# Pengguna extensi REST Client di Visual Studio Code untuk melakukan testing
+# kalau URI-nya beda bisa menyesuaikan (menganti @BASE_URI)
+
+# Flow-nya Registrasi, lalu dapat token, lalu di @TOKEN diganti dengan token itu tadi
+
+@BASE_URI = 127.0.0.1:8000
+@TOKEN = 
+
+### Melakukan request ke server untuk registrasi user
+POST http://{{BASE_URI}}/api/login.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Zagar",
+    "password": "password"
+}
+
+### Melakukan request ke server untuk mendapatkan token
+POST http://{{BASE_URI}}/api/login.php HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Zagar",
+    "password": "password"
+}
+
+### Melakukan penambahan data di database dengan token itu tadi
+POST http://{{BASE_URI}}/api/posts.php HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+    "judul": "Tests Posts",
+    "isi": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi, doloribus enim, similique aperiam corporis in temporibus repellat deleniti magnam vitae laudantium sint dolorum dignissimos. Ratione obcaecati sint perferendis vero."
+}
+
+### Mengambil semua posts
+GET http://{{BASE_URI}}/api/posts.php HTTP/1.1
