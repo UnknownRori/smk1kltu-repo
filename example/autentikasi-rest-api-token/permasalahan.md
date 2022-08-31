@@ -148,4 +148,7 @@ Untuk susunan file
 2. /folder-di-htdocs/api/login.php
 3. /folder-di-htdocs/api/register.php
 4. /folder-di-htdocs/api/posts.php
-5. /folder-di-htdocs/index.html
+5. /folder-di-htdocs/api/response.php
+6. /folder-di-htdocs/index.html
+
+Untuk response.php bisa menggunakan yang praktek-nya RESTFUL API yang dulu
