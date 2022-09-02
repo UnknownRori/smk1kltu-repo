@@ -116,11 +116,9 @@ Request :
 
 Response : 
 
-Response : 
-
 {
     "code": 201,
-    "posts": {
+    "post": {
         "id": xxx,
         "judul": "xxx",
         "isi": "xxx"
@@ -162,6 +160,5 @@ Untuk susunan file
 3. /folder-di-htdocs/api/register.php
 4. /folder-di-htdocs/api/posts.php
 5. /folder-di-htdocs/api/response.php
-6. /folder-di-htdocs/index.html
 
 Untuk response.php bisa menggunakan yang praktek-nya RESTFUL API yang dulu
