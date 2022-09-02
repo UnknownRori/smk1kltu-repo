@@ -85,6 +85,23 @@ Response :
     "token": "xxx"
 }
 
+### Melakukan request ke server untuk registrasi user
+POST http://{{BASE_URI}}/api/logout.php HTTP/1.1
+Authorization: Bearer {{TOKEN}}
+
+Request : 
+
+{
+
+}
+
+Response : 
+
+{
+    "code": 200,
+    "message": "Logout berhasil!"
+}
+
 ### Melakukan penambahan data di database dengan token itu tadi
 POST http://{{BASE_URI}}/api/posts.php HTTP/1.1
 Content-Type: application/json
