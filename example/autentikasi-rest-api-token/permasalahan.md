@@ -59,10 +59,6 @@ Response :
 
 {
     "code": 200,
-    "user": {
-        "id": xxx,
-        "username": "Zagar"
-    },
     "token": "xxx"
 }
 
