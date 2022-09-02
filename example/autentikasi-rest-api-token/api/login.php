@@ -41,10 +41,9 @@ if (password_verify($dataFromRequest['password'], $user['password'])) {
         'code' => 201,
         'token' => $token
     ]);
-} else {
-    // Kalau password tidak cocok kirim http code 406 Not Acceptable
-    response(406, [
-        'code' => 406,
-        'message' => 'Password Salah!'
-    ]);
 }
+// Kalau password tidak cocok kirim http code 406 Not Acceptable
+response(406, [
+    'code' => 406,
+    'message' => 'Password Salah!'
+]);
