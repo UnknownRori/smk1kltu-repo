@@ -26,7 +26,9 @@ DROP TABLE IF EXISTS tokens;
 -- @block ! Drop posts table
 DROP TABLE IF EXISTS posts;
 -- @block ! Empty users table
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE users;
+SET FOREIGN_KEY_CHECKS = 1;
 -- @block ! Empty tokens table
 TRUNCATE TABLE tokens;
 -- @block ! Empty posts table
