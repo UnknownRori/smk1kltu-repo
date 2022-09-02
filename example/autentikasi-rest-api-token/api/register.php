@@ -33,7 +33,7 @@ $stmt->execute();
 $userId = $pdo->lastInsertId();
 
 // melakukan enkripsi username untuk membuat token
-$token = md5($dataFromRequest['username']);
+$token = password_hash($dataFromRequest['username'], PASSWORD_DEFAULT);
 
 // Menambah token ke database
 $stmt = $pdo->prepare("INSERT INTO tokens (token, user_id) VALUES (:token, :user_id)");

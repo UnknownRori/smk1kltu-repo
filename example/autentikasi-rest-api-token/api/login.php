@@ -29,12 +29,12 @@ $user = $stmt->fetch();
 // Check password-nya
 if (password_verify($dataFromRequest['password'], $user['password'])) {
     // melakukan enkripsi username untuk membuat token
-    $token = md5($dataFromRequest['username']);
+    $token = password_hash($dataFromRequest['username'], PASSWORD_DEFAULT);
 
     // Menambah token ke database
     $stmt = $pdo->prepare("INSERT INTO tokens (token, user_id) VALUES (:token, :user_id)");
     $stmt->bindParam('token', $token);
-    $stmt->bindParam('user_id', $userId);
+    $stmt->bindParam('user_id', $user['id']);
     $stmt->execute();
 
     response(201, [
