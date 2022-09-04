@@ -31,6 +31,6 @@ if ($stmt->execute()) {
 
 // Kalau tidak kasih response code 500
 response(500, [
-    'code' => 201,
+    'code' => 500,
     'message' => "Kesalahan Server"
 ]);
