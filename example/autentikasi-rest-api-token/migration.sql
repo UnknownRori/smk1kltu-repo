@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS tokens (
     tokenId INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     token TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(userId)
 );
 -- @block ! Create posts table
 CREATE TABLE IF NOT EXISTS posts (
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS posts (
     user_id INT,
     judul VARCHAR(255),
     isi TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(userId)
 );
 -- @block ! Drop users table
 DROP TABLE IF EXISTS users;
