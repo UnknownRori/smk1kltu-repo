@@ -61,3 +61,12 @@ $pdo = new PDO('mysql:host=127.0.0.1;dbname=belajar_ngoding', 'root', 'unknownro
 Di contoh di-atas kita akan menggunakan `opsi` agar kita bisa mengetahui kalau query SQL kita ada yang bermasalah.
 
 ### Query Pertama
+
+```php
+$query = $pdo->prepare("SELECT user_id FROM siswa WHERE nama=:nama");
+$query->bindParam("nama", "Siswa1");
+$query->execute();
+$user_id = $query->fetch();
+```
+
+Di contoh atas kita mencoba mengambil user_id milik Siswa1 agar nantinya kita bisa mendapatkan nilai-nilai dari Siswa1.
