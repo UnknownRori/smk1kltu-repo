@@ -8,7 +8,7 @@ Di pembuatan halaman html terkadang kita ingin mengubah beberapa bentuk elemen u
 
 Untuk penambahan file CSS luar kita harus memiliki file CSS `.css` lalu kita memakai elemen `<link>` untuk men-import file css tadi `<link rel='stylesheet' href='path-menuju-file.css' />` elemen ini ditaruh ke dalam `<head>`, perlu di-ingat `href` itu bisa di-isi secara relative, absolute, untuk relative kita tinggal menambahkan `./` di bagian awal itu nanti membuat kita scan di folder yang file html itu berada dulu, untuk absolute di mulai dengan `/`
 
-## Penggunaan CSS Style di attribute `style=''`
+## Penggunaan CSS Style dengan attribute
 
 Ini sangat mudah dilakukan kita tinggal cari elemen yang ingin kita ubah bentuknya lalu di-tambahkan attribute tadi, setelah itu isi dari attribute kita isi dengan bahasa CSS, untuk menambahkan banyak CSS di dalam attribute harus dipisah dengan `;`
 
@@ -54,7 +54,7 @@ p {
 
 Ketika dicoba semua elemen `<p>` akan memiliki background hitam dan warna teksnya merah
 
-### Class Selector
+#### Class Selector
 
 Yang ketiga ialah Class Selector, ini akan sering kita gunakan ketika membuat halaman web kita bagus, penulisannya hanya `.nama-class`, nama class itu bebas mau di-isi apa, pastikan nama-nya mudah dipaham, untuk memberi elemen html kita class tinggal menambahkan attribute `class=''` didalamnya, dapat support banyak class tetapi dipisah dengan spasi jadi kalau class selector tidak boleh memiliki spasi.
 
@@ -86,7 +86,7 @@ Kode di-atas akan menghasilkan :
 
 ![Gambar CSS Class Selector](image/example-css-class-selector.png)
 
-### Attribute Selector
+#### Attribute Selector
 
 Selector yang ini jarang dipakai, cara penulisannya `[nama-attribute]`
 
@@ -122,12 +122,12 @@ CSS ini digunakan untuk align teks kalau pernah memakai Microsoft Word nah itu s
 
 yang dapat di-isi di text-align
 
-- center
-- end
-- justfiy
-- left
-- right
-- start
+- `center`
+- `end`
+- `justfiy`
+- `left`
+- `right`
+- `start`
 
 ### Font Size
 
@@ -150,8 +150,32 @@ CSS ini digunakan untuk mengganti font suatu text, kalau sering menggunakan Micr
 CSS ini digunakan untuk mengatur ketebalan suatu teks, inputnya ialah antara 100-900.
 
 ```html
-<p style='font-wight: 200'>...</p>
+<p style='font-weight: 200'>...</p>
 ```
+
+### Text Decoration
+
+CSS ini digunakan untuk memberi dekorasi kepada teks, seperti garis di-tengah tengah teks atau yang lainnya.
+
+Macam-Macam:
+
+- `dashed`
+- `dotted`
+- `double`
+- `line-through`
+- `none`
+- `overline`
+- `solid`
+- `underline`
+- `wavy`
+
+Contoh :
+
+```html
+<p style='text-decoration: line-through'>Hello, World</p>
+```
+
+Contoh di-atas akan menghasilkan teks Hello, World menjadi ~~`Hello, World`~~
 
 ### Height
 
@@ -173,11 +197,11 @@ CSS ini sama juga dengan yang Height tetapi yang di atur ukuran panjangnya
 
 CSS ini digunakan untuk memberi jarak antara elemen yang lain, CSS ini bisa di-isi `px`, `%`, `rem`, CSS ini juga ada beberapa macam dan penggunaanya.
 
-- margin: atas kanan bawah kiri || semua
-- margin-left
-- margin-right
-- margin-top
-- margin-bottom
+- `margin`: atas kanan bawah kiri || semua
+- `margin-left`
+- `margin-right`
+- `margin-top`
+- `margin-bottom`
 
 ```html
 <div style='width: 200px;height: 200px; background-color: black'></div>
@@ -190,11 +214,11 @@ CSS ini digunakan untuk memberi jarak antara elemen yang lain, CSS ini bisa di-i
 
 Padding digunakan untuk memberi jarak antara konten dengan bordernya, CSS ini sama dengan margin.
 
-- padding: atas kanan bawah kiri || semua
-- padding-left
-- padding-right
-- padding-top
-- padding-bottom
+- `padding`: atas kanan bawah kiri || semua
+- `padding-left`
+- `padding-right`
+- `padding-top`
+- `padding-bottom`
 
 ```html
 <div style='width: 200px;height: 200px; background-color: black'></div>
@@ -207,12 +231,19 @@ Padding digunakan untuk memberi jarak antara konten dengan bordernya, CSS ini sa
 
 CSS ini digunakan untuk membuat garis tepi di suatu elemen HTML, CSS ini hampir mirip dengan Padding dan Margin serta memiliki beberapa perintah yang dapat membuat border kita lebih custom.
 
-- border: atas kanan bawah kiri || semua
-- border-left
-- border-right
-- border-top
-- border-bottom
-- border-radius (Ketumpulan di sisi border)
-- border-color (Warna border)
+- `border`: {ukuran} {tipe} {warna}
+- `border-right`: {ukuran} {tipe} {warna}
+- `border-left`: {ukuran} {tipe} {warna}
+- `border-bottom`: {ukuran} {tipe} {warna}
+- `border-top`: {ukuran} {tipe} {warna}
+
+untuk tipe ada :
+
+- solid
+- dotted
+
+```html
+<div style='border: 1px solid black'>Hello, World</div>
+```
 
 Sekaian dulu untuk materinya akan dilanjut ke pertemuan selanjutnya.
