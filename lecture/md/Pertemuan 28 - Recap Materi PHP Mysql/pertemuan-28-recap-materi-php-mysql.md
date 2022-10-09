@@ -1,4 +1,4 @@
-# Pertemuan 29 - Recap Materi PHP Mysql
+# Pertemuan 28 - Recap Materi PHP Mysql
 
 ## Pendahuluan
 
