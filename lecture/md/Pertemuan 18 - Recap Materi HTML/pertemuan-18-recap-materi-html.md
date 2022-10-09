@@ -2,7 +2,7 @@
 
 ## Pendahuluan
 
-HTML atau Hyper Text Markup Language merupakan bahasa markup yang digunakan untuk membuat sebuah website, bahasa ini menggunakan sistem tag dan dapat didukung oleh Javscript dan CSS.
+HTML atau Hyper Text Markup Language merupakan bahasa markup yang digunakan untuk membuat sebuah website, bahasa ini menggunakan sistem tag dan dapat didukung oleh Javascript dan CSS.
 
 ## Pembuatan File HTML
 
@@ -206,7 +206,7 @@ Elemen yang terakhir ini digunakan untuk membuat tabel, cara penggunaanya hampir
 
 ![Gambar Tabel 1](image/example-table-1.png)
 
-Terkadang kita juga pengen beberapa kolom bisa gabung atau mungkin barisnya ini bisa di-selesaikan dengan cara menambahkan attribute kedalam `<td>`, attributenya ialah`rowspan=''` untuk berapa besar barisnya, dan `colspan=''` untuk berapa besar kolomnya
+Terkadang kita juga pengen beberapa kolom bisa gabung atau mungkin barisnya ini bisa di-selesaikan dengan cara menambahkan attribute kedalam `<td>`, attributenya ialah `rowspan=''` untuk berapa besar barisnya, dan `colspan=''` untuk berapa besar kolomnya
 
 ```html
 <body>
