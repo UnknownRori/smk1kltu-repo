@@ -67,5 +67,110 @@ Di contoh di-atas kita akan menggunakan `opsi` agar kita bisa mengetahui kalau q
 Contoh paling sederhana mengambil seluruh data dari tabel siswa, perlu di-ingat `$pdo` sama dengan yang di-atas
 
 ```php
+// Membuat query SQL
+$query = $pdo->query("SELECT * FROM siswa");
 
+// Ini akan membuat pengambilan data kita menggunakan Associative Array
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+// Menjalankan query
+$query->execute();
+
+// Mengambil semua data yang ada
+$data = $query->fetchAll();
+
+// Lalu kita print semua data tersebut
+var_dump($data);
+```
+
+Setelah melihat contoh di-atas method `query` ini mengembalikan sebuah object `PDOSTATEMENT` yang bisa kita gunakan untuk mengambil data, sebelum memulai mengambil data, kita harus jalankan method `execute` terlebih dahulu, baru bisa kita ambil dengan menggunakan `fetchAll`
+
+Kita juga bisa melakukan pengambilan data yang spesifik misalnya kita ingin `uid` 1 didalam tabel siswa, ini dapat di selesaikan dengan menggunakan perintah SQL `WHERE`.
+
+```php
+$query = $pdo->query("SELECT * FROM siswa WHERE uid=1");
+
+// Ini akan membuat pengambilan data kita menggunakan Associative Array
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+$query->execute();
+
+// Bedanya dengan fetchAll ialah, kalau fetch hanya 1 yang di-ambil
+$data = $query->fetch();
+
+var_dump($data);
+```
+
+Nah penggunaan method `query` ini ada bagus sama buruknya, bagusnya ialah kita bisa cepat membuat query tanpa susah susah memikirkan hal lain, tetapi buruknya ialah kita akan menjadi rawan terkena `hack` untuk mengurangi kejadian ini kita menggunakan cara `prepared statement`.
+
+Jadi semisal kita punya input yang akan di masukan kedalam query SQL kita seperti contoh dibawah.
+
+```php
+// Bayangkan ini dari input user
+$inputUser = 2;
+
+$query = $pdo->query("SELECT * FROM siswa WHERE uid={$inputUser}");
+
+// Ini akan membuat pengambilan data kita menggunakan Associative Array
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+$query->execute();
+
+$data = $query->fetch();
+
+var_dump($data);
+```
+
+Nah contoh di-atas dapat membuat kita kena `hack`, jenis hack disini ialah `SQL Injection` karena kita bisa saja sebagai user langsung meng-input SQL karena input kita langsung dimasukan ke query SQL-nya server dan langsung dijalankan tanpa ada pertanyaan.
+
+### Prepared Statement
+
+Prepared Statement ini beda jauh dengan method `query` karena kita harus mendefinisikan SQL tanpa ada penambahan dari luar kalau ada penambahan dari luar kita harus menggunakan simbol `:`.
+
+Sebagai contoh kita masih sama ingin mengambil data `uid` dengan input user.
+
+```php
+$userInput = 2;
+
+$query = $pdo->prepare("SELECT * FROM siswa WHERE uid=:uid");
+
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+$query->bindParam('uid', $userInput, PDO::PARAM_INT);
+
+$query->execute();
+
+$data = $query->fetch();
+
+var_dump($data);
+
+```
+
+Perbedaan-nya terlihat sekali didalam query SQL yang kita definisikan dan method yang kita panggil sebelum di jalankan method `execute`, method `bindParam` digunakan untuk pengantian suatu teks yang menggunakan `:` di awalnya, dan parameter terakhir adalah tipe data-nya
+
+Tipe data yang ada didalam PDO
+
+- PDO::PARAM_BOOL
+- PDO::PARAM_INT
+- PDO::PARAM_STR
+- PDO::PARAM_STR_CHAR
+
+method `bindParam` dapat dipanggil berulang kali jadi kita tidak perlu khawatir.
+
+### Pengaksesan Data
+
+Karena data yang kita ambil berbentuk Array kita bisa mengaksesnya seperti Array biasa, misalnya data yang di ambil menggunakan method `fetch` dapat diakses menggunakan nama kolom tersebut, misalnya menggunakan query di-atas tadi.
+
+```php
+echo "Nama   : {$data['nama']}";
+echo "Alamat : {$data['alamat']}";
+```
+
+Dan untuk data yang di ambil menggunakan method `fetchAll` kita harus menggunakan index angka karena data lebih dari satu, bisa juga kita menggunakan loop.
+
+```php
+foreach ($data as $siswa) {
+    echo "Nama   : {$siswa['nama']}";
+    echo "Alamat : {$siswa['alamat']}";
+}
 ```
