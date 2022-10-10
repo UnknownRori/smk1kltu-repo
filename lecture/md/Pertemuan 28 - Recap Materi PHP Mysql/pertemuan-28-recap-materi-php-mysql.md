@@ -174,3 +174,36 @@ foreach ($data as $siswa) {
     echo "Alamat : {$siswa['alamat']}";
 }
 ```
+
+Atau kita bisa menprint dengan menggunakan HTML agar lebih enak.
+
+```php
+<?php foreach ($data as $siswa) : ?>
+    <h1><?= $siswa['nama'] ?></h1>
+    <p><?= $siswa['alamat'] ?></p>
+<?php endforeach; ?>
+```
+
+### JOIN Table
+
+Untuk table join disini tetap sama ketika kita memakai SQL langsung di cmd, hanya saja perbedaannya kita akan mengolah data tersebut.
+
+Misalnya tabel join dari ulangan dengan siswa tetapi yang hanya memiliki ulangan saja, lalu di print ke browser
+
+```php
+$query = $pdo->prepare("SELECT * FROM ulangan LEFT JOIN siswa ON ulangan.user_id = siswa.uid");
+
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+$query->execute();
+
+$data = $query->fetchAll();
+```
+
+```php
+<?php foreach ($data as $ulangan) : ?>
+    <h2>Mapel : <?= $ulangan['mapel'] ?></h2>
+    <p>Nilai : <?= $ulangan['nilai'] ?></p>
+    <span>Milik : <?= $ulangan['nama'] ?></span>
+<?php endforeach; ?>
+```
