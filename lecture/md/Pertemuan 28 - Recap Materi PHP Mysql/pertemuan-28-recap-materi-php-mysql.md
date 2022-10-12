@@ -207,3 +207,47 @@ $data = $query->fetchAll();
     <span>Milik : <?= $ulangan['nama'] ?></span>
 <?php endforeach; ?>
 ```
+
+#### Kode full
+
+```php
+<?php
+
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=belajar_ngoding', 'root', '', [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+$userInput = 2;
+
+$query = $pdo->prepare("SELECT * FROM ulangan LEFT JOIN siswa ON ulangan.user_id = siswa.uid");
+
+$query->setFetchMode(PDO::FETCH_ASSOC);
+
+$query->execute();
+
+$data = $query->fetchAll();
+
+var_dump($data);
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+<?php foreach ($data as $ulangan) : ?>
+    <h2>Mapel : <?= $ulangan['mapel'] ?></h2>
+    <p>Nilai : <?= $ulangan['nilai'] ?></p>
+    <span>Milik : <?= $ulangan['nama'] ?></span>
+<?php endforeach; ?>
+
+</html>
+```
