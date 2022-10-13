@@ -251,3 +251,122 @@ var_dump($data);
 
 </html>
 ```
+
+### Penggunaan Dengan Input User dari Form
+
+Nah sekarang penasaran contoh cara menambahkan data ke database dengan ini, sebenarnya sama saja ketika kita membuat query di PhpMyAdmin tetapi kita menggunakan user input dari form.
+
+Pertama tama kita siapkan dulu formnya, actionnya tetep dikosongkan karena kita tidak ingin pindah file, karena urusan pengolahan data user masih ditempat sama.
+
+```html
+<form action="" method="post">
+    <input type="text" name="nama" id="">
+    <input type="text" name="alamat" id="">
+    <input type="submit" value="Tambah">
+</form>
+```
+
+Lalu kita siapkan tempat untuk menampilkan data siswa
+
+```php
+$querySiswa = $pdo->prepare("SELECT * FROM siswa");
+$querySiswa->setFetchMode(PDO::FETCH_ASSOC);
+$querySiswa->execute();
+$siswa = $querySiswa->fetchAll();
+```
+
+```php
+<?php foreach ($siswa as $data) : ?>
+    <h2>Nama : <?= $data['nama'] ?></h2>
+    <p>Nilai : <?= $data['kelas'] ?></p>
+    <span>Alamat : <?= $data['alamat'] ?></span>
+<?php endforeach; ?>
+```
+
+Lalu logika untuk menambahkan data siswa menggunakan data input tadi, karena kita menggunakan `POST` kita bisa menggunakan `$_SERVER['REQUEST_METHOD']` untuk mengecek apakah aksesnya menggunakan `POST`, kenapa kok pakek `POST`, karena secara konvensi seperti itu dan ketika kita membuka halaman tersebut logika tersebut tidak jalan karena normalnya ketika kita akses di website itu `GET`
+
+```php
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Melakukan pengecekan apakah data lengkap atau tidak
+    // Kita menggunakan $_POST karena mode yang kita pakai $_POST
+    // Variabel ini global dan menyimpan hampir seluruh input user
+    // yang menggunakan form dengan action POST
+    if ($_POST['nama'] == '' || $_POST['alamat'] == '') {
+        // Jika data tidak lengkap langsung dihentikan scriptnya
+        die("Data tidak lengkap");
+    }
+
+    // Jika data lengkap tambahkan ke database
+    $query = $pdo->prepare("INSERT INTO siswa (nama, alamat) VALUES (:nama, :alamat)");
+    $query->bindParam('nama', $_POST['nama']);
+    $query->bindParam('alamat', $_POST['alamat']);
+    $query->execute();
+
+    // Lalu print data berhasil ditambahkan
+    echo "Data berhasil ditambahkan";
+}
+```
+
+Perlu di-ingat kode ini ditaruh sebelum query untuk mengambil data siswa karena data yang ditambah setelah pengambilan data jadi tidak sinkron.
+
+Kode keseluruhan
+
+```php
+<?php
+
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=belajar_ngoding', 'root', '', [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+]);
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Melakukan pengecekan apakah data lengkap atau tidak
+    // Kita menggunakan $_POST karena mode yang kita pakai $_POST
+    // Variabel ini global dan menyimpan hampir seluruh input user
+    // yang menggunakan form dengan action POST
+    if ($_POST['nama'] == '' || $_POST['alamat'] == '') {
+        // Jika data tidak lengkap langsung dihentikan scriptnya
+        die("Data tidak lengkap");
+    }
+
+    // Jika data lengkap tambahkan ke database
+    $query = $pdo->prepare("INSERT INTO siswa (nama, alamat) VALUES (:nama, :alamat)");
+    $query->bindParam('nama', $_POST['nama']);
+    $query->bindParam('alamat', $_POST['alamat']);
+    $query->execute();
+
+    // Lalu print data berhasil ditambahkan
+    echo "Data berhasil ditambahkan";
+}
+
+$querySiswa = $pdo->prepare("SELECT * FROM siswa");
+$querySiswa->setFetchMode(PDO::FETCH_ASSOC);
+$querySiswa->execute();
+$siswa = $querySiswa->fetchAll();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+<form action="" method="post">
+    <input type="text" name="nama" id="">
+    <input type="text" name="alamat" id="">
+    <input type="submit" value="Tambah">
+</form>
+
+<?php foreach ($siswa as $data) : ?>
+    <p>ID : <?= $data['uid'] ?></p>
+    <h2>Nama : <?= $data['nama'] ?></h2>
+    <span>Alamat : <?= $data['alamat'] ?></span>
+<?php endforeach; ?>
+
+</html>
+```
