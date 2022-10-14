@@ -370,3 +370,5 @@ $siswa = $querySiswa->fetchAll();
 
 </html>
 ```
+
+Di elemen `<form>` attribute method bisa diketik dengan `get` tetapi itu akan membuat URL menjadi tempat data form tadi, dan untuk mengambil data tersebut menggunakan `$_GET`.
