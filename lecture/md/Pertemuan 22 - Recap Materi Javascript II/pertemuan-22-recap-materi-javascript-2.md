@@ -27,11 +27,6 @@ function print(teks) {
 }
 
 print(nama);
-
-let nama2 = format(nama);
-
-console.log(nama) // Tetap menyimpan tulisan "Zagar" karena String bukan Object
-console.log(typeof nama) // ini akan memberi tau tipe data didalam variabel nama yaitu "string"
 ```
 
 Contoh lagi tetapi dengan `object`
