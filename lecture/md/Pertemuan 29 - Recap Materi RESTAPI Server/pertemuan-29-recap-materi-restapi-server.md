@@ -174,3 +174,29 @@ array_filter($header, function ($value, $headerType) {
 ```
 
 Contoh ini bagus ketika digunakan pada akhir script kita jadi yang muncul nanti hanya data dari hasil Serialization-nya `json_encode` tadi.
+
+### Konvensi SERVER REST API
+
+REST API ini memiliki konvensi internasional yang sebaiknya ditaati untuk menjaga konsistensi endpoint di server kita, kita pakai contoh yang sederhana terlebih dahulu.
+
+Semisal kita mempunyai server REST API yang menyediakan data user, server ini tidak perlu login, semua dapat melakukan penambahan user, pengeditan user, dan juga penghapusan user. Dengan menggunakan spesifikasi tadi kita bisa membuat desain endpointnya.
+
+| Method | Endpoint / URI / URL                 |  Effect                           |
+|--------|--------------------------------------|-----------------------------------|
+| GET    | http://localhost/restapi/user        | Mengambil semua user              |
+| GET    | http://localhost/restapi/user?id={}  | Mengambil user dengan id tertentu |
+| POST   | http://localhost/restapi/user        | Menambah user                     |
+| PATCH  | http://localhost/restapi/user?id={}  | Men-edit user dengan id tertentu  |
+| DELETE | http://localhost/restapi/user?id={}  | Menghapus user dengan id tertentu |
+
+Kalau temen-temen pengen membuat ini bisa menggunakan variabel global yang sudah disediakan oleh php `$_GET` untuk mengambil data `id` yang diberikan.
+
+Tapi di contoh tadi adalah sederhana karena hanya memenuhi standar sedikit, kalau ingin memenuhi standar.
+
+| Method | Endpoint / URI / URL                 |  Effect                           |
+|--------|--------------------------------------|-----------------------------------|
+| GET    | http://localhost/restapi/user        | Mengambil semua user              |
+| GET    | http://localhost/restapi/user/{}     | Mengambil user dengan id tertentu |
+| POST   | http://localhost/restapi/user        | Menambah user                     |
+| PATCH  | http://localhost/restapi/user/{}     | Men-edit user dengan id tertentu  |
+| DELETE | http://localhost/restapi/user/{}     | Menghapus user dengan id tertentu |
