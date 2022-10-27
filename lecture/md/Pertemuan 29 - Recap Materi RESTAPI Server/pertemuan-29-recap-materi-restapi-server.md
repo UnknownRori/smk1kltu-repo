@@ -181,13 +181,13 @@ REST API ini memiliki konvensi internasional yang sebaiknya ditaati untuk menjag
 
 Semisal kita mempunyai server REST API yang menyediakan data user, server ini tidak perlu login, semua dapat melakukan penambahan user, pengeditan user, dan juga penghapusan user. Dengan menggunakan spesifikasi tadi kita bisa membuat desain endpointnya.
 
-| Method | Endpoint / URI / URL                 |  Effect                           |
-|--------|--------------------------------------|-----------------------------------|
-| GET    | http://localhost/restapi/user        | Mengambil semua user              |
-| GET    | http://localhost/restapi/user?id={}  | Mengambil user dengan id tertentu |
-| POST   | http://localhost/restapi/user        | Menambah user                     |
-| PATCH  | http://localhost/restapi/user?id={}  | Men-edit user dengan id tertentu  |
-| DELETE | http://localhost/restapi/user?id={}  | Menghapus user dengan id tertentu |
+| Method | Endpoint / URI / URL                     |  Effect                           |
+|--------|------------------------------------------|-----------------------------------|
+| GET    | http://localhost/restapi/user.php        | Mengambil semua user              |
+| GET    | http://localhost/restapi/user.php?id={}  | Mengambil user dengan id tertentu |
+| POST   | http://localhost/restapi/user.php        | Menambah user                     |
+| PATCH  | http://localhost/restapi/user.php?id={}  | Men-edit user dengan id tertentu  |
+| DELETE | http://localhost/restapi/user.php?id={}  | Menghapus user dengan id tertentu |
 
 Kalau temen-temen pengen membuat ini bisa menggunakan variabel global yang sudah disediakan oleh php `$_GET` untuk mengambil data `id` yang diberikan.
 
