@@ -2,7 +2,7 @@
 
 ## Pendahuluan
 
-Karena Javascript memiliki support di berbagai macam browser kita memiliki `DOM` atau `Document Object Model`, dengan ini kita dapat mengubah bentuk struktur HTML dan CSS kita ketika halaman web dibuka, ini sangat bermanfaat ketika kita memerlukan interaksi yang sangat tinggi, untuk memakainya kita hanya memanggil `document` object lalu kita akan mendapatkan banyak sekali method yang bisa kita gunakan, kita hanya membahas yang sering dipakai saja.
+Di Javascript memiliki `DOM` atau `Document Object Model` ini merupakan suatu representasi elemen struktur HTML kita, dengan ini kita dapat mengubah bentuk struktur HTML dan CSS kita ketika halaman web dibuka, ini sangat bermanfaat ketika kita memerlukan interaksi yang sangat tinggi, untuk memakainya kita hanya memanggil `document` object lalu kita akan mendapatkan banyak sekali method yang bisa kita gunakan, kita hanya membahas yang sering dipakai saja.
 
 ## HTML Selector
 
