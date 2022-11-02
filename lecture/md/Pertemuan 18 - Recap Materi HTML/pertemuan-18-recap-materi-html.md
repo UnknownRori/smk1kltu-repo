@@ -95,7 +95,7 @@ Elemen ini sering digunakan untuk membuat tombol karena secara default sudah dib
 
 ```html
 <body>
-    <button>Tombol ku</button>
+    <button>Tombol</button>
 </body>
 ```
 
