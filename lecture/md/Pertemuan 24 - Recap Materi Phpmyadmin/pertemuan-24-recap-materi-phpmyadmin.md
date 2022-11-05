@@ -24,7 +24,7 @@ Beberapa saya sensor karena rahasia negara😏
 
 ## Membuat Database
 
-Pertama kita kali install hanya ada beberapa database yang ada untuk men-support `phpmyadmin` dan `Mysql` yang sebaiknya tidak kita sentuh, di bagian depan terdapat tulisan `Create Database` yang berarti kolom untuk membuat database, kita dapat isikan nama database yang kita inginkan tetapi yang saya contohkan nanti memakai nama belajar_ngoding.
+Pertama kita kali install hanya ada beberapa database yang ada untuk men-support `phpmyadmin` dan `Mysql` yang sebaiknya tidak kita sentuh sebelum kita bisa memakai Database kita harus membuatnya terlebih dahulu, untuk membuat klik tombol di bagian depan terdapat tulisan `Create Database` yang berarti kolom untuk membuat database, kita dapat isikan nama database yang kita inginkan tetapi yang saya contohkan nanti memakai nama belajar_ngoding.
 
 ![Gambar Create Database di Dasboard](image/phpmyadmin-dashboard-create-database.png)
 
@@ -34,11 +34,11 @@ Setelah di-isikan klik `create` langsung setelah itu muncul seperti ini.
 
 ## Membuat Tabel
 
-Kita dapat membuat tabel pertama kita dengan cara mengisi kolom yang input yang bertuliskan, kita juga dapat men-sepsifikan berapa kolom tabel kita, setelah itu di klik save untuk contoh saya akan membuat tabel yang namanya siswa dan 4 kolom tabel saja.
+Setelah membuat database sebelum kita bisa menyimpan data di Database kita harus membuat tabelnya terlebih dahulu. Kita dapat membuat tabel pertama kita dengan cara mengisi kolom yang input yang bertuliskan, kita juga dapat men-sepsifikan berapa kolom tabel kita, setelah itu di klik save untuk contoh saya akan membuat tabel yang namanya siswa dan 4 kolom tabel saja.
 
 ![Gambar Kolom input pembuatan tabel baru](image/phpmyadmin-new-database-creating-new-table.png)
 
-Setelah itu akan muncul tampilan seperti ini
+Setelah diklik Create, nanti akan muncul tampilan seperti ini
 
 ![Men-input bentuk kolom di tabel](image/phpmyadmin-new-table.png)
 
@@ -112,6 +112,16 @@ Untuk contoh kali ini kita akan membuat relasi ke siswa, kalau sudah di klik sav
 
 ![Data sudah di-isi](image/relation-view-filled.png)
 
-Nah setelah kita buat, kita bisa membuat data di tabel absensi_perpus, kita isi data bebas yang mengarah ke siswa yang kita buat pertama, lalu setelah selesai kita hapus data siswa di tabel siswa tadi lalu data absesn_perpus kita juga ikut dihapus
+Nah setelah kita buat, kita bisa membuat data di tabel absensi_perpus, kita isi data bebas yang mengarah ke siswa yang kita buat pertama, lalu setelah selesai kita hapus data siswa di tabel siswa tadi lalu data absensi_perpus kita juga ikut dihapus
 
 Kalau tidak paham relasi itu seperti apa yang dicontoh di-atas, konsepnya tabel absensi_perpus memiliki relasi dengan siswa jadi kalau misal ada sesuatu yang terjadi di tabel siswa tabel absensi_perpus juga kena, ini disebut `One to Many Relationship`.
+
+## Menambah Data
+
+Nah dari tadi membuat tabel, sekarang lanjut ke membuat data yang nantinya dimasukan ke tabel, untuk contoh kita menggunakan tabel siswa, pertama kita datangi terlebih dahulu tabel siswa lalu klik tab `insert`.
+
+![showing insert tab](image/showing-insert-button.png)
+
+Lalu isikan kolomnya sesuai apa yang di-inginkan lalu klik go
+
+![inserting data](image/inserting-data.png)
