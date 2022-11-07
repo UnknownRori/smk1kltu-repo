@@ -33,7 +33,7 @@ Untuk contoh kita akan menggunakan struktur HTML jadi kalau dipraktek-kan tolong
 
 Hasilnya :
 
-![](photo/default.png)
+![Default Photo](photo/default.png)
 
 ### Grouping Selector
 
@@ -49,7 +49,7 @@ Note : Selector ini dapat digabung dengan class selector atau yang lainnya.
 
 Hasilnya :
 
-![](photo/grouping.png)
+![Grouping Selector](photo/grouping.png)
 
 ### Descendant Combinator
 
@@ -62,7 +62,7 @@ div p {
 }
 ```
 
-![](photo/descendant-combinator.png)
+![Descendant Selector Combinator](photo/descendant-combinator.png)
 
 ### Direct Child Combinator
 
@@ -84,7 +84,7 @@ Kita juga bisa menggunakannya sepert ini juga
 
 Hasilnya :
 
-![](photo/direct-child-combinator.png)
+![Direct Child Combinator Selector](photo/direct-child-combinator.png)
 
 ## Pseudo-Class
 
