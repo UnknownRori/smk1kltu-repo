@@ -9,15 +9,29 @@
         <title>Login</title>
     </head>
 
-    <body class='flex flex-col'>
-        <div class="flex flex-col card">
-            <h2>Login</h2>
-            <input placeholder='Masukan username' type="text">
-            <input placeholder='Masukan password' type="password">
-            <div class="flex flex-row-reverse">
-                <input type="submit" value='Login '>
-            </div>
+    <body>
+        <div class='flex card'>
+            <form action="#">
+                <h2>Login</h2>
+                <div class="form-group flex flex-col">
+                    <label for="username">Username</label>
+                    <input name='username' class='form-control' placeholder='Masukan username' id='username'
+                        type="text">
+                    <span class='hidden' id='username-error'>Username salah!</span>
+                </div>
+                <div class="form-group flex flex-col">
+                    <label for="password">Password</label>
+                    <input name='password' class='form-control' placeholder='Masukan password' id='password'
+                        type="password">
+                    <span class='hidden' id='password-error'>Password salah!</span>
+                </div>
+                <div class='flex flex-row-reverse'>
+                    <button type="submit" class='submit'>Login</button>
+                </div>
+            </form>
         </div>
+
+        <script src="./script.js"></script>
     </body>
 
 </html>
