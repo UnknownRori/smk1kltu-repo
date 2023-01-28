@@ -61,4 +61,7 @@ Statement update ini ada 3 :
  Digunakan untuk men-edit suatu kolom.
 - `ADD {nama-kolom} {tipe-data-dan-yang-lainnya};`
  Digunakan untuk menambah kolom baru di suatu tabel.
-- `
+- `ALTER COLUMN {nama-kolom} {nama-kolom-baru};`
+ Digunakan untuk menganti nama kolom
+
+Note
