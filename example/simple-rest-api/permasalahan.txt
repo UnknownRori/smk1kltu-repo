@@ -1,0 +1,59 @@
+=== Permasalahan ===
+
+Terkadang ketika kita membuat frontend(website) menggunakan javascript atau menggunakan
+framework javascript(React, Vue, Svelte) kita akan membutuhkan suatu cara untuk
+melakukan komunikasi dari frontend ke backend(server) seperti kode php kita dulu
+yang melakukan komunikasi dengan database mysql.
+
+Untuk pertemuan kali ini kita akan belajar tentang RESTFUL API, Sebelum bahas RESTFUL API apa sih API, API
+adalah Application Programming Interface, tujuan dari API dalam konteks ini ialah berbagi data
+antar aplikasi yang berbeda, nah RESTFUL API ini merupakan suatu desain arsitektur yang terdapat
+di API itu tadi, RESTFUL API ini sering digunakan ketika frontend(website) memerlukan suatu
+data yang hanya ada di backend(server).
+
+Cara kerja RESTFUL API ini yaitu REST Client(user) akan melakukan akses pada data pada REST server,
+data-data yang diakses tadi memiliki identifier yang berbeda berbentuk URI (https://api.github.com/users/octocat/)
+setiap URI memiliki data yang berbeda dengan yang lain.
+
+Konsep ini menggunakan serialize dan deserialize, jadi di server akan men-serialize data, lalu di client nanti
+akan deserialize data-nya, serialize merupakan suatu konversi/translasi agar dapat di baca oleh bahasa pemrograman lain
+dan deserialize ini sama dengan serialize tetapi kebalikan-nya.
+
+kita akan membuat website yang menampilkan todo, todo ini berasal dari server orang lain.
+
+URI yang akan kita pakai:
+    -> https://jsonplaceholder.typicode.com/todos
+
+Setiap API memiliki schema, setiap API memiliki schema yang berbeda-beda jadi kita harus mempelajari-nya dulu
+sebelum membuat aplikasi kita.
+
+Ini merupakan schema RESTFUL API yang akan kita pakai, URI(Endpoint) ini return array yang berisi Javascript Object, 
+kalau tidak tau array tolong lihat pada pertemuan 1 atau 9.
+https://jsonplaceholder.typicode.com/todos
+[
+    {
+        "userId": xxx,
+        "id": xxx,
+        "title": "xxx",
+        "complete": true,
+    },
+    {
+        "userId": xxx,
+        "id": xxx,
+        "title": "xxx",
+        "complete": false,
+    }
+    ...
+]
+
+Kita nanti hanya fokus di id, title, dan complete, kalau temen-temen tidak bisa bahasa inggris
+id itu unique identifier ini digunakan untuk membedakan dengan data lain, title merupakan judul,
+dan complete merupakan selesai tetapi dalam konteks ini apakah todo yang dimaksud selesai atau belum.
+
+Untuk mengambil data dari URI tadi kita akan menggunakan function fetch() yang disediakan oleh javascript,
+function ini memiliki return value Promise, Promise ini termasuk di asynchronous yang berarti non-blocking function
+tetapi beda dengan multi-threading, multi-threading mengeluarkan thread langsung di process dan terkadang
+hidup-nya cukup lama kalau asynchronous ini hanya si program menjalankan kode lain dan juga kode yang jalan-nya
+lama dan kode yang lama tersebut nanti bisa di-ambil ketika kita menggunakan keyword await, await ini nanti akan
+men-stop eksekusi kode lain dan menanti kode yang jalan-nya lama itu tadi sampai selesai, tidak semua tipe data
+bisa di await hanya Promise saja yang bisa di await.

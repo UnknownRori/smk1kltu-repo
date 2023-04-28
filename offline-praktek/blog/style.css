@@ -1,0 +1,46 @@
+:root {
+    --primary-background-color: rgb(15, 147, 255);
+    --1: 0.4rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+    transition: all 5ms;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+nav.navbar {
+    background-color: var(--primary-background-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    padding: calc(var(--1) * 2);
+}
+
+ul.navbar-item {
+    list-style: none;
+    display: flex;
+    gap: var(--1);
+}
+
+a {
+    color: white;
+}
+
+.container {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.footer {
+    background-color: var(--primary-background-color);
+}

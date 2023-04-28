@@ -1,0 +1,26 @@
+=== Permasalahan ===
+Misal kita kita mempunyai website yang membutuhkan setiap user untuk login, 
+sebelum login si user harus dapat melakukan registrasi terlebih dahulu, 
+dan setelah login si user dapat menjelajahi semua halaman website kita 
+tanpa halangan (area user yang sudah login).
+
+=== Category Permasalahan ===
+1. Dapat Login & Registrasi.
+2. Ada halaman yang hanya dapat diakses oleh user yang sudah login.
+
+=== Sub-Category Permasalahan ===
+1. Dapat Login & Registrasi.
+    => Melakukan koneksi database.
+    => Melakukan Data Fetching dari database untuk melakukan pencocokan password (Login)
+    => Melakukan pengiriman data ke database untuk disimpan(Registrasi)
+    => Kalau bisa login/registrasi kenapa tidak bisa logout
+
+2. Ada halaman yang hanya dapat diakses oleh user yang sudah login.
+    => Saat login/registrasi user yang sukses otomatis melakukan penyimpanan suatu 
+       data kunci sebagai patokan bahwa user tersebut telah login dengan menggunakan 
+       sistem cookie/session.
+    => Ketika ada halaman yang hanya bisa dibuka oleh user yang sudah login kita tinggal 
+       mengambil data dari cookie/session dan lalu melakukan sedikit pencocokan apakah 
+       user memang benar-benar sudah login.
+
+Topik : Database, Mysql, PhpMyAdmin, PHP.

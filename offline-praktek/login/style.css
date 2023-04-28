@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: xx-large;
+}
+
+span {
+    color: red;
+}
+
+
+.card {
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid white;
+    padding: 8px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px 2px #a8a6a6;
+}
+
+.submit {
+    background-color: rgb(35, 35, 255);
+    border: 0.5px solid lightblue;
+    padding: 0.3rem 0.5rem;
+    color: white;
+    border-radius: 4px;
+    margin: 0.25rem;
+    cursor: pointer;
+    text-shadow: 0.8px 0.8px 2px white;
+}
+
+.submit:hover {
+    text-shadow: 0.8px 0.8px 5px white;
+}
+
+.form-control {
+    margin: 4px 0px;
+    border: 0.25px solid gray;
+    border-radius: 4px;
+    padding: 3px;
+    outline: 0;
+}
+
+.form-control:focus {
+    border: 0.25px solid gray;
+    border-radius: 4px;
+    padding: 3px;
+    outline: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        margin: 10px;
+    }
+
+    .form-control,
+    label {
+        font-size: small;
+    }
+
+    h2 {
+        font-size: larger;
+    }
+
+    span {
+        font-size: small;
+    }
+}
